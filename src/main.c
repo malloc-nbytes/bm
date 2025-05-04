@@ -125,14 +125,7 @@ void copy_to_clipboard(const char *data) {
 
         char buf[256] = {0};
 
-        if ((g_config.flags & FLAG_TYPE_LS) != 0) {
-                strcpy(buf, "ls '");
-        } else if ((g_config.flags & FLAG_TYPE_CAT) != 0) {
-                strcpy(buf, "cat '");
-        } else if ((g_config.flags & FLAG_TYPE_CD) != 0) {
-                strcpy(buf, "cd '");
-        }
-
+        strcpy(buf, "cd '");
         strcat(buf, data);
         strcat(buf, "'");
 
