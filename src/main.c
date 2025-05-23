@@ -160,8 +160,9 @@ void read_bm(Ctx *ctx) {
 
         FILE *file = fopen(path, "r");
         if (!file) {
-                perror("Failed to open file for reading");
-                return;
+                file = fopen(path, "w");
+                fclose(file);
+                file = fopen(path, "r");
         }
 
         char *line = NULL;
@@ -503,7 +504,12 @@ int main(int argc, char **argv) {
                         }
                         else if (ch == 'd') {
                                 remove_path(&ctx);
-                        } else if (ENTER(ch)) {
+                        } else if (ch == 'j') {
+                                selection_down(&ctx);
+                        } else if (ch == 'k') {
+                                selection_up(&ctx);
+                        }
+                        else if (ENTER(ch)) {
                                 reset_scrn();
                                 copy_to_clipboard(ctx.paths.data[ctx.r]);
                                 printf("copied: cd '%s' to the clipboard\n", ctx.paths.data[ctx.r]);
