@@ -125,7 +125,8 @@ void copy_to_clipboard(const char *data) {
 
         char buf[256] = {0};
 
-        strcpy(buf, "cd '");
+        //strcpy(buf, "cd '");
+        strcpy(buf, "'");
         strcat(buf, data);
         strcat(buf, "'");
 
@@ -512,7 +513,8 @@ int main(int argc, char **argv) {
                         else if (ENTER(ch)) {
                                 reset_scrn();
                                 copy_to_clipboard(ctx.paths.data[ctx.r]);
-                                printf("copied: cd '%s' to the clipboard\n", ctx.paths.data[ctx.r]);
+                                //printf("copied: cd '%s' to the clipboard\n", ctx.paths.data[ctx.r]);
+                                printf("copied: '%s' to the clipboard\n", ctx.paths.data[ctx.r]);
                                 goto end;
                         }
                 } break;
